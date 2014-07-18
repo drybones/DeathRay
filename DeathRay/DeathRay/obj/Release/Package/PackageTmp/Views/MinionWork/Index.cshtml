@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Minion Work";
+}
+
+<div class="text-center">
+    <h2>Time to Work, Minion!</h2>
+    <br />
+    <button id="minionClickBtn" class="round-button">PRESS</br>ME</button>
+</div>
+
+<p class="debug">RESULT: <span id="minionName"></span> at <span id="minionClickTimestamp"></span></p>
+
+@section scripts {
+<script>
+    $('#minionClickBtn').click(function () {
+        $.post('@Url.Action("Click","MinionClick")', function (data) {
+            $('#minionName').text(data.Minion);
+            $('#minionClickTimestamp').text(new Date(parseInt(data.Timestamp.substr(6))));
+        });
+    });
+    $('#minionClickBtn').mousedown(function () {
+        $('#minionClickBtn').addClass('btnDown');
+    });
+    $('#minionClickBtn').mouseup(function () {
+        $('#minionClickBtn').removeClass('btnDown');
+    });
+</script>
+}
+
+
