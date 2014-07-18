@@ -1,0 +1,36 @@
+﻿{
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "siteName": {
+            "value": ""
+        },
+        "hostingPlanName": {
+            "value": ""
+        },
+        "siteLocation": {
+            "value": "West Europe"
+        },
+        "sku": {
+            "value": "Free"
+        },
+        "workerSize": {
+            "value": "0"
+        },
+        "serverName": {
+            "value": ""
+        },
+        "serverLocation": {
+            "value": ""
+        },
+        "administratorLogin": {
+            "value": ""
+        },
+        "databaseName": {
+            "value": ""
+        },
+        "collation": {
+            "value": "SQL_Latin1_General_CP1_CI_AS"
+        }
+    }
+}
