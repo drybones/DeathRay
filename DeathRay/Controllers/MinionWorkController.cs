@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using StackExchange.Redis;
+using Microsoft.AspNet.Identity;
+
+using DeathRay.Helpers;
 
 namespace DeathRay.Controllers
 {
@@ -12,7 +16,8 @@ namespace DeathRay.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var minionClickTotal = MinionClickTotalHelper.GetMinionClickTotal(User.Identity.GetUserName());
+            return View(minionClickTotal.ClickTotal);
         }
     }
 }

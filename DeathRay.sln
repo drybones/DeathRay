@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeathRay", "DeathRay\DeathRay.csproj", "{48A98DF6-501E-4EA7-85F1-861C2ED92C1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeathRayWeb", "DeathRay\DeathRayWeb.csproj", "{48A98DF6-501E-4EA7-85F1-861C2ED92C1D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DeploymentItems", "DeploymentItems", "{F1EBAD5D-FF50-4249-BF95-DFB87B948E0D}"
 EndProject
@@ -25,6 +25,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5DBF49
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "DeathRayClickPersister", "ClickPersister\DeathRayClickPersister.ccproj", "{77E1BC05-6682-44FC-948F-75383DE18BEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeathRayClickPersisterRole", "ClickPersisterRole\DeathRayClickPersisterRole.csproj", "{95FA17BD-7B3A-4485-9E3B-3B3421ECE7F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeathRayShared", "DeathRayShared\DeathRayShared.csproj", "{C23EEA2A-D825-4E95-8C4F-7B06902C9487}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +41,18 @@ Global
 		{48A98DF6-501E-4EA7-85F1-861C2ED92C1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48A98DF6-501E-4EA7-85F1-861C2ED92C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48A98DF6-501E-4EA7-85F1-861C2ED92C1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77E1BC05-6682-44FC-948F-75383DE18BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77E1BC05-6682-44FC-948F-75383DE18BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77E1BC05-6682-44FC-948F-75383DE18BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77E1BC05-6682-44FC-948F-75383DE18BEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95FA17BD-7B3A-4485-9E3B-3B3421ECE7F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95FA17BD-7B3A-4485-9E3B-3B3421ECE7F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95FA17BD-7B3A-4485-9E3B-3B3421ECE7F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95FA17BD-7B3A-4485-9E3B-3B3421ECE7F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C23EEA2A-D825-4E95-8C4F-7B06902C9487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C23EEA2A-D825-4E95-8C4F-7B06902C9487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C23EEA2A-D825-4E95-8C4F-7B06902C9487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C23EEA2A-D825-4E95-8C4F-7B06902C9487}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace DeathRay.Models
+namespace DeathRay.Shared.Models
 {
-    public class MinionClick
+    public class MinionClickEvent
     {
         public string Minion { get; set; }
-        public DateTime Timestamp { get; set; }
+        public DateTime ClickTimestamp { get; set; }
     }
 }

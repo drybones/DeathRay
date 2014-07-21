@@ -7,24 +7,45 @@
     <h2>Time to Work, Minion!</h2>
     <br />
     <button id="minionClickBtn" class="round-button">PRESS</br>ME</button>
-</div>
 
-<p class="debug">RESULT: <span id="minionName"></span> at <span id="minionClickTimestamp"></span></p>
+    <div id="clickTotalContainer"><span id="clickTotal">---</span></br><span class="sub">clicks</span></div>
+</div>
 
 @section scripts {
 <script>
-    $('#minionClickBtn').click(function () {
-        $.post('@Url.Action("Click","MinionClick")', function (data) {
-            $('#minionName').text(data.Minion);
-            $('#minionClickTimestamp').text(new Date(parseInt(data.Timestamp.substr(6))));
+    $(document).ready(function () {
+        var pollingPeriod = 5000;
+        var timeoutID;
+
+        $('#minionClickBtn').click(function () {
+            $.post('@Url.Action("Click","MinionClick")', function (data) {
+                clearTimeout(timeoutID);
+                pollingPeriod = 200;
+                updateClickTotal();
+            });
         });
-    });
-    $('#minionClickBtn').mousedown(function () {
-        $('#minionClickBtn').addClass('btnDown');
-    });
-    $('#minionClickBtn').mouseup(function () {
-        $('#minionClickBtn').removeClass('btnDown');
-    });
+        $('#minionClickBtn').mousedown(function () {
+            $('#minionClickBtn').addClass('btnDown');
+        });
+        $('#minionClickBtn').mouseup(function () {
+            $('#minionClickBtn').removeClass('btnDown');
+        });
+
+        function updateDisplay(data)
+        {
+            $('#clickTotal').text(data.ClickTotal);
+        }
+
+        function updateClickTotal()
+        {
+            $.getJSON('@Url.Action("Total","MinionClick")', function (data) {
+                updateDisplay(data);
+            });
+            pollingPeriod = Math.min(pollingPeriod * 1.2, 5000);
+            timeoutID = setTimeout(updateClickTotal, pollingPeriod);
+        }
+        updateClickTotal();
+    })
 </script>
 }
 

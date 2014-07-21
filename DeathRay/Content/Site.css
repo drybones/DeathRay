@@ -52,3 +52,12 @@ textarea {
     background-color: black;
     color: #b6ff00;
 }
+
+#clickTotal
+{
+    font-size: 8em;
+}
+#clickTotalContainer .sub
+{
+    font-size: 2em;
+}
