@@ -3,7 +3,8 @@
   <Role name="DeathRayClickPersisterRole">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=deathraycloudsvc;AccountKey=jTOhL7tg7BSGMuxLi5ONlQgyBZ2pLpS65DUNnwHpuTte8SV0Rw/81R1Dq12IzmuyyglG4/AyuWRn07gpKjzoxQ==" />
+      <Setting name="Setting1" value="" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>

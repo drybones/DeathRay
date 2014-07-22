@@ -61,3 +61,17 @@ textarea {
 {
     font-size: 2em;
 }
+
+#leaderboard {
+    margin-top: 2em;
+    font-size: 1.5em;
+}
+
+#leaderboard table {
+    margin: 0 auto;
+}
+
+#leaderboard td
+{
+    padding-right: 2em;
+}

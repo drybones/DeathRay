@@ -17,7 +17,6 @@ namespace ClickPersisterRole
 {
     public class SimpleEventProcessor : IEventProcessor
     {
-        IDictionary<string, int> map;
         PartitionContext partitionContext;
         Stopwatch checkpointStopWatch;
         CloudTable table;
@@ -36,7 +35,6 @@ namespace ClickPersisterRole
 
         public SimpleEventProcessor()
         {
-            this.map = new Dictionary<string, int>();
             var account = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["AzureStorageConnectionString"]);
             var client = account.CreateCloudTableClient();
             table = client.GetTableReference("MinionClicks");
@@ -65,7 +63,7 @@ namespace ClickPersisterRole
                     var minionClickEntity = new MinionClickEntity()
                         {
                             PartitionKey = newData.ClickTimestamp.ToString("yyyyMMdd") + "-" + newData.Minion,
-                            RowKey = newData.ClickTimestamp.ToString("HHmmss.fff") + new Guid().ToString(),
+                            RowKey = newData.ClickTimestamp.ToString("HHmmss.fff") + "-" + Guid.NewGuid().ToString(),
                             Minion = newData.Minion,
                             ClickTimestamp = newData.ClickTimestamp,
                             EventHubPartition = this.partitionContext.Lease.PartitionId

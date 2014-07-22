@@ -9,20 +9,25 @@
     <button id="minionClickBtn" class="round-button">PRESS</br>ME</button>
 
     <div id="clickTotalContainer"><span id="clickTotal">---</span></br><span class="sub">clicks</span></div>
+
+    <div id="leaderboard"><table></table></div>
 </div>
+
+<div style="clear: both;"></div>
 
 @section scripts {
 <script>
     $(document).ready(function () {
-        var pollingPeriod = 5000;
-        var timeoutID;
+        var clickTotal = 0;
+        var clickTotalPollingPeriod = 1000;
+        var leaderboardPollingPeriod = 5000;
 
         $('#minionClickBtn').click(function () {
             $.post('@Url.Action("Click","MinionClick")', function (data) {
-                clearTimeout(timeoutID);
-                pollingPeriod = 200;
-                updateClickTotal();
+                updateClickTotalDisplay(data);
             });
+            clickTotal++;
+            updateClickTotalDisplay();
         });
         $('#minionClickBtn').mousedown(function () {
             $('#minionClickBtn').addClass('btnDown');
@@ -31,20 +36,37 @@
             $('#minionClickBtn').removeClass('btnDown');
         });
 
-        function updateDisplay(data)
-        {
-            $('#clickTotal').text(data.ClickTotal);
-        }
-
         function updateClickTotal()
         {
             $.getJSON('@Url.Action("Total","MinionClick")', function (data) {
-                updateDisplay(data);
+                updateClickTotalDisplay(data);
             });
-            pollingPeriod = Math.min(pollingPeriod * 1.2, 5000);
-            timeoutID = setTimeout(updateClickTotal, pollingPeriod);
+        }
+        function updateClickTotalDisplay(data) {
+            if (data && data.ClickTotal > clickTotal) {
+                clickTotal = data.ClickTotal;
+            }
+            $('#clickTotal').text(clickTotal);
         }
         updateClickTotal();
+        setInterval(updateClickTotal, clickTotalPollingPeriod);
+
+        function updateLeaderboard()
+        {
+            $.getJSON('@Url.Action("Leaderboard", "MinionClick")', function (data) {
+                updateLeaderboardDisplay(data);
+            });
+        }
+        function updateLeaderboardDisplay(data) {
+            leaderboard = $('#leaderboard table');
+            leaderboard.empty();
+            for (i = 0; i < data.length; i++) {
+                leaderboard.append('<tr><td class="score">' + data[i].ClickTotal + '</td><td class="minion">' + data[i].Minion + '</td></tr>')
+            }
+        }
+        updateLeaderboard();
+        setInterval(updateLeaderboard, leaderboardPollingPeriod);
+
     })
 </script>
 }

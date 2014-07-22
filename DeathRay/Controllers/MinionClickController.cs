@@ -8,8 +8,10 @@ using System.Configuration;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 using Newtonsoft.Json;
+using StackExchange.Redis;
 
 using DeathRay.Shared.Models;
+using DeathRay.Models;
 using DeathRay.Helpers;
 
 using System.Text;
@@ -42,7 +44,7 @@ namespace DeathRay.Controllers
                     PartitionKey = username
                 };
 
-            client.SendAsync(data);
+            client.Send(data);
 
             return Json(MinionClickTotalHelper.GetMinionClickTotal(username));
         }
@@ -50,6 +52,20 @@ namespace DeathRay.Controllers
         public ActionResult Total()
         {
             return Json(MinionClickTotalHelper.GetMinionClickTotal(User.Identity.GetUserName()), JsonRequestBehavior.AllowGet);
+        }
+
+        [OutputCache(Duration=5)]
+        public ActionResult Leaderboard()
+        {
+            var ctxt = new ApplicationDbContext();
+            var leaderboard = new List<MinionClickTotal>();
+
+            foreach(var user in ctxt.Users)
+            {
+                leaderboard.Add(MinionClickTotalHelper.GetMinionClickTotal(user.UserName));
+            }
+
+            return Json(leaderboard.OrderByDescending(l => l.ClickTotal).Take(10), JsonRequestBehavior.AllowGet);
         }
 
         private static string GetServiceBusConnectionString()

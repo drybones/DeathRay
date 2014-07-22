@@ -52,6 +52,7 @@
       <Private>True</Private>
       <RoleType>Worker</RoleType>
       <RoleName>DeathRayClickPersisterRole</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
